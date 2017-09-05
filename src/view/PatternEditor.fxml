@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="editorGrandParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#moveLoaded" prefHeight="854.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PatternEditorController">
+   <left>
+      <VBox prefHeight="558.0" prefWidth="186.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meta data" wrappingWidth="159.6708984375">
+               <font>
+                  <Font name="Lucida Console" size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="7.0" top="10.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="name" prefHeight="31.0" prefWidth="156.0" promptText="Name">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="creator" layoutX="10.0" layoutY="78.0" prefHeight="31.0" prefWidth="156.0" promptText="Creator">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="description" layoutX="10.0" layoutY="139.0" prefHeight="31.0" prefWidth="156.0" promptText="Description">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="30.0" />
+               </VBox.margin>
+            </TextField>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ruleset:" wrappingWidth="88.6708984375">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="40.0" top="20.0" />
+               </VBox.margin>
+            </Text>
+            <HBox prefHeight="39.0" prefWidth="167.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <children>
+                  <TextField fx:id="born" prefHeight="31.0" prefWidth="84.0" promptText="Born">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="survives" prefHeight="31.0" prefWidth="84.0" promptText="Survives">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#setRulesBtnClicked" prefHeight="26.0" prefWidth="83.0" text="Confirm">
+               <VBox.margin>
+                  <Insets left="49.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#saveBtnClicked" prefHeight="31.0" prefWidth="172.0" text="Save pattern">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Label prefHeight="30.0" prefWidth="72.0" text="Color:">
+                     <font>
+                        <Font name="Lucida Console" size="10.0" />
+                     </font>
+                  </Label>
+                  <ColorPicker fx:id="liveCellColor" onAction="#changeLiveCellColor" prefHeight="31.0" prefWidth="101.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="42.0" prefWidth="167.0">
+               <children>
+                  <Button fx:id="loadFileBtn" mnemonicParsing="false" onAction="#loadFileBtnClicked" prefHeight="31.0" prefWidth="85.0" text="Load file">
+                     <HBox.margin>
+                        <Insets left="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="loadURLBtn" mnemonicParsing="false" onAction="#loadURLBtnClicked" prefHeight="31.0" prefWidth="85.0" text="Load URL">
+                     <HBox.margin>
+                        <Insets left="6.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox prefHeight="123.0" prefWidth="167.0">
+               <children>
+                  <HBox prefHeight="33.0" prefWidth="167.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zoom:" wrappingWidth="45.2421875">
+                           <HBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Lucida Console" size="12.0" />
+                           </font>
+                        </Text>
+                        <Slider fx:id="zoomSlider" max="25" min="0.3" onMouseDragged="#listenerZoom" prefHeight="14.0" prefWidth="97.0" value="13">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Slider>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="31.0" prefWidth="167.0">
+                     <children>
+                        <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#closeBtnClicked" prefHeight="27.0" prefWidth="75.0" text="Close">
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#resetBoardBtnClicked" prefHeight="31.0" prefWidth="103.0" text="Reset board">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children></HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </VBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Generations:" wrappingWidth="135.6708984375" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <Canvas fx:id="editorCanvas" height="549.0" onMouseClicked="#mouseClicked" onMouseDragged="#mouseDragged" width="671.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <ScrollPane fx:id="genPane" prefHeight="234.0" prefWidth="840.0" style="-fx-background-color: grey; -fx-border-color: grey;" BorderPane.alignment="CENTER">
+         <content>
+            <Canvas fx:id="genCanvas" height="234.0" width="836.0" />
+         </content>
+      </ScrollPane>
+   </bottom>
+</BorderPane>
